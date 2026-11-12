@@ -1,0 +1,10 @@
+# Variables de entorno (oculta tu contraseña de Redis Cloud)
+.env
+
+# Entornos virtuales de Python
+.venv/
+venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]

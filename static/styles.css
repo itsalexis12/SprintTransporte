@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f2f5f9;
+  color: #222;
+}
+
+header {
+  background: #003366;
+  color: white;
+  padding: 24px;
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccd4dd;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #0057b8;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #004491;
+}
+
+#btn-cancelar {
+  background: #6c757d;
+}
+
+.oculto {
+  display: none;
+}
+
+.parada {
+  border: 1px solid #dde3ea;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.parada h3 {
+  margin: 0 0 6px;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-editar {
+  background: #f0ad4e;
+}
+
+.btn-eliminar {
+  background: #d9534f;
+}
+
+#mensaje {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.exito {
+  color: #1a7f37;
+}
+
+.error {
+  color: #b02a37;
+}
+.panel-mapa {
+  grid-column: 1 / -1;
+}
+
+#mapa {
+  height: 450px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #dde3ea;
+}

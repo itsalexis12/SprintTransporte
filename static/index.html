@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rutas Puebla</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+    />
+</head>
+<body>
+  <header>
+    <h1>🚌 Rutas Puebla</h1>
+    <p>Administración de paradas de transporte público</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2 id="titulo-formulario">Registrar parada</h2>
+
+      <form id="form-parada">
+        <input type="hidden" id="parada-id">
+
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" required placeholder="Ej. Parada Zócalo">
+
+        <label for="colonia">Colonia</label>
+        <input type="text" id="colonia" required placeholder="Ej. Centro">
+
+        <label for="latitud">Latitud</label>
+        <input type="number" id="latitud" step="any" required placeholder="19.0431">
+
+        <label for="longitud">Longitud</label>
+        <input type="number" id="longitud" step="any" required placeholder="-98.1937">
+
+        <label for="rutas">Rutas</label>
+        <input type="text" id="rutas" placeholder="Ruta 1, Ruta 15, Ruta 72">
+
+        <label for="activa">Estado</label>
+        <select id="activa">
+          <option value="true">Activa</option>
+          <option value="false">Inactiva</option>
+        </select>
+
+        <div class="botones">
+          <button type="submit" id="btn-guardar">Guardar</button>
+          <button type="button" id="btn-cancelar" class="oculto">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Paradas registradas</h2>
+      <button id="btn-recargar">Actualizar lista</button>
+      <div id="mensaje"></div>
+      <div id="lista-paradas"></div>
+    </section>
+    <section class="panel panel-mapa">
+        <h2>Mapa de paradas</h2>
+        <div id="mapa"></div>
+    </section>
+
+  </main>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+    ></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
