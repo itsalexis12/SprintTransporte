@@ -3,8 +3,10 @@ from fastapi import APIRouter, HTTPException
 from app.models import Parada
 from app.database import redis_client
 
+# Define el enrutador bajo el prefijo /paradas
 router = APIRouter(prefix="/paradas", tags=["Paradas"])
 
+# Crea una nueva parada en Redis si su ID no existe previamente
 @router.post("")
 def crear_parada(parada: Parada):
     clave = f"parada:{parada.id}"
@@ -15,6 +17,7 @@ def crear_parada(parada: Parada):
     redis_client.set(clave, parada.model_dump_json())
     return {"mensaje": "Parada creada", "id": parada.id}
 
+# Obtiene y devuelve todas las paradas registradas
 @router.get("")
 def listar_paradas():
     claves = redis_client.scan_iter(match="parada:*")
@@ -25,6 +28,7 @@ def listar_paradas():
 
     return {"total": len(paradas), "paradas": paradas}
 
+# Consulta los datos de una parada específica por su ID
 @router.get("/{parada_id}")
 def obtener_parada(parada_id: str):
     clave = f"parada:{parada_id}"
@@ -35,6 +39,7 @@ def obtener_parada(parada_id: str):
 
     return json.loads(datos)
 
+# Actualiza la información de una parada existente
 @router.put("/{parada_id}")
 def actualizar_parada(parada_id: str, parada: Parada):
     clave = f"parada:{parada_id}"
@@ -47,6 +52,7 @@ def actualizar_parada(parada_id: str, parada: Parada):
 
     return {"mensaje": "Parada actualizada", "parada": parada}
 
+# Elimina una parada de la base de datos por su ID
 @router.delete("/{parada_id}")
 def eliminar_parada(parada_id: str):
     clave = f"parada:{parada_id}"

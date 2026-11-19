@@ -11,7 +11,7 @@ L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_M
 
 let marcadorSeleccionado = null;
 const capaParadas = L.layerGroup().addTo(mapa);
-
+// Configuración y referencias del DOM
 const API = "/paradas";
 const form = document.getElementById("form-parada");
 const lista = document.getElementById("lista-paradas");
@@ -20,11 +20,13 @@ const btnCancelar = document.getElementById("btn-cancelar");
 const btnGuardar = document.getElementById("btn-guardar");
 const titulo = document.getElementById("titulo-formulario");
 
+// Muestra notificaciones de éxito o error en la interfaz
 function mostrarMensaje(texto, tipo) {
   mensaje.textContent = texto;
   mensaje.className = tipo;
 }
 
+// Restablece el formulario al modo de registro inicial
 function limpiarFormulario() {
   form.reset();
   document.getElementById("parada-id").value = "";
@@ -33,6 +35,7 @@ function limpiarFormulario() {
   titulo.textContent = "Registrar parada";
 }
 
+// Obtiene las paradas desde la API y actualiza la lista y los marcadores del mapa
 async function cargarParadas() {
   try {
     const respuesta = await fetch(API);
@@ -92,7 +95,7 @@ async function cargarParadas() {
   }
 }
 
-
+// Maneja el envío del formulario para crear (POST) o actualizar (PUT) una parada
 form.addEventListener("submit", async evento => {
   evento.preventDefault();
 
@@ -140,6 +143,8 @@ form.addEventListener("submit", async evento => {
     mostrarMensaje(error.message, "error");
   }
 });
+
+// Centra el mapa en una parada específica y abre su ventana emergente
 async function ubicarParadaEnMapa(id) {
   try {
     const respuesta = await fetch(`${API}/${id}`);
@@ -176,6 +181,7 @@ async function ubicarParadaEnMapa(id) {
   }
 }
 
+// Delegación de eventos para los botones de cada tarjeta
 lista.addEventListener("click", async evento => {
     const boton = evento.target;
     const id = boton.dataset.id;
@@ -226,7 +232,7 @@ lista.addEventListener("click", async evento => {
     }
 });
 
-
+// Eventos generales y carga inicial al abrir la página
 btnCancelar.addEventListener("click", limpiarFormulario);
 document.getElementById("btn-recargar").addEventListener("click", cargarParadas);
 

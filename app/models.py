@@ -3,6 +3,7 @@ from typing import List
 from datetime import datetime
 import uuid
 
+# Modelo de datos para validar y estructurar la información de cada parada
 class Parada(BaseModel):
     id: str = Field(default_factory=lambda: f"pue-{uuid.uuid4().hex[:8]}")
     nombre: str
